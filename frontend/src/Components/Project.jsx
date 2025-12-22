@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Addproject from "./Addproject"
 import { Card } from "react-bootstrap";
+import server from '../environment';
 
 export default function Project() {
   const [showForm, setShowForm] = useState(false);
@@ -13,8 +14,9 @@ export default function Project() {
   const [projects, setProject] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/project/get-project")
+    axios.get(`${server}/api/project/get-project`)
       .then((res) => {
+        // console.log(res.data);
         setProject(res.data);
       })
       .catch((error) => {

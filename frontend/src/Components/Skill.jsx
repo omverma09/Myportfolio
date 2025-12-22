@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Addskills from "./Addskills.jsx";
+import server from "../environment.js";
 
 
 export default function Skill() {
@@ -13,7 +14,7 @@ export default function Skill() {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/skill/get-Skills").then((res) => {
+    axios.get(`${server}/api/skill/get-Skills`).then((res) => {
       setSkills(res.data);
     }).catch((err) => {
       console.log(err.message);

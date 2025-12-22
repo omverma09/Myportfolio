@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import server from "../environment";
 
 export default function AddProject() {
   const [title, setTitle] = useState("");
@@ -31,7 +32,7 @@ export default function AddProject() {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/project/add-project", formData
+        `${server}/api/project/add-project`, formData
       );
 
       alert("Project added successfully ✅");

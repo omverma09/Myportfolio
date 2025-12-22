@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #0f172a;
+  /* background-color: #0f172a; */
   font-family: "Poppins", sans-serif;
 }
 
@@ -9,7 +9,9 @@ body {
   display: flex;
   gap: 20px;
 }
-
+.container-fluid{
+  background-color:#0f172a ;
+}
 .btn {
   padding: 14px 32px;
   font-size: 16px;
@@ -51,6 +53,7 @@ body {
 .navbar {
   text-decoration: none;
   color: white;
+  background-color: #0f172a;
 }
 
 .nav-link-custom::after {
@@ -72,7 +75,7 @@ body {
 /* For about section */
 
 .about-section {
-
+   background-color: #0f172a;
   color: #fff;
   height: 70vh;
 }
@@ -273,7 +276,9 @@ body {
   border-radius: 4px;
   width: 200px;
 }
-
+.inp{
+  margin-right: 10px;
+}
 .newsletter button {
   height: 36px;
   padding: 0 18px;

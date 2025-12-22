@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import server from "../environment";
 
 export default function Loginform () {
     const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ export default function Loginform () {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:3000/api/admin/login", {email, password});
+            const res = await axios.post(`${server}/api/admin/login`, {email, password});
             localStorage.setItem("adminToken", res.data.token);
             alert("Login successfully...");
             window.location.reload();

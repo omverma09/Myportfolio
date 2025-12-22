@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import server from "../environment";
 
 export default function AddSkill() {
     const [name, setName] = useState("");
@@ -28,7 +29,7 @@ export default function AddSkill() {
 
         // Backend expects array, so wrap in array
         axios.post(
-            "http://localhost:3000/api/skill/add-Skills",
+            `${server}/api/skill/add-Skills`,
             { name, icon }, // Array of skills
             {
                 headers: {

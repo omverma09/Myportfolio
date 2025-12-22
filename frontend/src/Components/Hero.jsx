@@ -11,9 +11,9 @@ export default function Hero() {
           <h1 className="display-4 fw-bold">I’m Om</h1>
           <h1 className="display-5 fw-bold text-warning">Software Developer</h1>
 
-          <div class="button-container">
-            <button class="btn btn-primary">Got a project?</button>
-            <button class="btn btn-outline">My resume</button>
+          <div className="button-container">
+            <button className="btn btn-primary">Got a project?</button>
+            <button className="btn btn-outline">My resume</button>
           </div>
         </div>
 

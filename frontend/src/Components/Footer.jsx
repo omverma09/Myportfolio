@@ -1,6 +1,8 @@
 import { useState } from "react";
-// import axios from "axios";
-// import server from "../enviroment";
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { MdOutlineWhatsapp } from "react-icons/md";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -27,8 +29,9 @@ const Footer = () => {
         <div className="cta-overlay">
           <div className="cta-content">
             <h3>
-              Learn more about our listing process, as well as our
-              additional staging and design work.
+              I’m a Full Stack Web Developer skilled in the MERN stack,
+              passionate about building clean, user-friendly, and scalable web
+              applications.
             </h3>
             <button className="cta-btn">LEARN MORE</button>
           </div>
@@ -50,6 +53,7 @@ const Footer = () => {
             <span>Subscribe Us</span>
             <form className="subscribe-box">
               <input
+              className="inp"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
@@ -65,13 +69,13 @@ const Footer = () => {
       {/* FOOTER BOTTOM */}
       <footer className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>© Real Trust 2023</p>
+          <p>Copyright preserve by Omverma  ©</p>
 
           <div className="social-icons">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span to="https://www.instagram.com/_om_verma_09__/"><FaInstagram /></span>
+            <span><FaFacebook /></span>
+            <span><FaSquareXTwitter /></span>
+            <span><MdOutlineWhatsapp /></span>
           </div>
         </div>
       </footer>

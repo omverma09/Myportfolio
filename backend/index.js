@@ -20,7 +20,10 @@ mongoose.connect(mongoUrl).then(() => {
   console.log(e.message);
 })
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/admin", adminRoute);
 app.use("/api/skill", skillsRoute);
