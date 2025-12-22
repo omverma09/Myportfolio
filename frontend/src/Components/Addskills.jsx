@@ -29,7 +29,7 @@ export default function AddSkill() {
 
         // Backend expects array, so wrap in array
         axios.post(
-            `${server}/api/skill/add-Skills`,
+            `${server}/api/skill/add-skill`,
             { name, icon }, // Array of skills
             {
                 headers: {

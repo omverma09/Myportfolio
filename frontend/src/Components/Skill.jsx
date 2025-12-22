@@ -14,7 +14,7 @@ export default function Skill() {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get(`${server}/api/skill/get-Skills`).then((res) => {
+    axios.get(`${server}/api/skill/get-skill`).then((res) => {
       setSkills(res.data);
     }).catch((err) => {
       console.log(err.message);

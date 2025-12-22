@@ -16,7 +16,7 @@ export default function Project() {
   useEffect(() => {
     axios.get(`${server}/api/project/get-project`)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setProject(res.data);
       })
       .catch((error) => {
