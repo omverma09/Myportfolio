@@ -3,8 +3,9 @@ import Skill from "../models/skills.model.js"
 //For fetching skill
 export const getSkills = async (req, res) => {
   try {
-    const skills = await Skill.find();
+    const skills = await Skill.find({});
     res.status(200).json(skills);
+    console.log(skills);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
