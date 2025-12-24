@@ -7,21 +7,6 @@ import { MdOutlineWhatsapp } from "react-icons/md";
 const Footer = () => {
   const [email, setEmail] = useState("");
 
-  // const handleSubscribe = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const res = await axios.post(
-  //       `${server}/api/subscribe/add-subscribe`,
-  //       { email }
-  //     );
-
-  //     alert(res.data.message);
-  //     setEmail("");
-  //   } catch (error) {
-  //     alert(error.response?.data?.message || "Something went wrong");
-  //   }
-  // };
   return (
     <>
       {/* CTA SECTION */}
