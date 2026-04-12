@@ -1,27 +1,59 @@
-import Navbar from "./Components/Navbar.jsx"
-import About from "./Components/About.jsx"
-import Skill from "./Components/Skill.jsx"
-import Project from "./Components/Project.jsx"
-import Contact from "./Components/Contact.jsx"
-import Footer from "./Components/Footer.jsx"
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.jsx"
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { AppThemeProvider } from "./context/ThemeContext";
+import AppRoutes from "./routes/AppRoutes";
 
-export default function App() {
+// ── Toast config
+const toastOptions = {
+    duration: 4000,
+    position: "top-right",
+    style: {
+        background: "#0f172a",
+        color: "#e2e8f0",
+        border: "1px solid rgba(100,255,218,0.15)",
+        borderRadius: "0.75rem",
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontSize: "0.88rem",
+        padding: "0.75rem 1rem",
+        boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
+    },
+    success: {
+        iconTheme: {
+            primary: "#64ffda",
+            secondary: "#020617",
+        },
+    },
+    error: {
+        iconTheme: {
+            primary: "#f87171",
+            secondary: "#020617",
+        },
+    },
+};
 
-  return (
-    <>
-      <Navbar/>
-    
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/project" element={<Project/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/skill" element={<Skill/>}/>
-      </Routes>
+// ── Root App
+const App = () => {
+    return (
+        // MUI theme + CssBaseline
+        <AppThemeProvider>
 
-      <Footer/>
-    </>
-  )
-}
+            {/* Client-side routing */}
+            <BrowserRouter>
+
+                {/* All pages and layout */}
+                <AppRoutes />
+
+                {/* Global toast notifications */}
+                <Toaster
+                    toastOptions={toastOptions}
+                    containerStyle={{ zIndex: 9999 }}
+                />
+
+            </BrowserRouter>
+
+        </AppThemeProvider>
+    );
+};
+
+export default App;

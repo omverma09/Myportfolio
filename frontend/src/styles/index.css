@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #020617;
+    color: #e2e8f0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: rgba(100, 255, 218, 0.2);
+    color: #64ffda;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #020617;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0ea5e9, #64ffda);
+    border-radius: 3px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+/* ── Reusable Components ──────────────────────── */
+@layer components {
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #0ea5e9, #64ffda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(14, 165, 233, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(100, 255, 218, 0.25);
+    box-shadow: 0 20px 60px rgba(14, 165, 233, 0.1);
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 4rem;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0ea5e9, #64ffda);
+    margin: 1.25rem 0 2.5rem;
+  }
+
+  /* Section label */
+  .section-label {
+    color: #64ffda;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Skill badge */
+  .skill-badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    color: #64ffda;
+    background: rgba(100, 255, 218, 0.05);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #020617;
+    background: linear-gradient(135deg, #0ea5e9, #64ffda);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+  }
+
+  /* Outline button */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background: rgba(100, 255, 218, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Nav link */
+  .nav-link {
+    position: relative;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: color 0.3s;
+    padding-bottom: 2px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #64ffda;
+    transition: width 0.3s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #64ffda;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Page wrapper */
+  .page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem 2rem 4rem;
+  }
+}
+
+/* ── Utilities ────────────────────────────────── */
+@layer utilities {
+  .text-accent   { color: #64ffda; }
+  .text-muted    { color: #64748b; }
+  .text-body     { color: #8892b0; }
+  .bg-dark       { background-color: #020617; }
+  .bg-dark-2     { background-color: #0f172a; }
+  .border-accent { border-color: rgba(100, 255, 218, 0.15); }
+
+  .font-mono     { font-family: 'JetBrains Mono', monospace; }
+}
+
+/* ── Keyframe Animations ──────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes pulse-glow {
+  0%   { box-shadow: 0 0 5px  rgba(100, 255, 218, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); }
+}

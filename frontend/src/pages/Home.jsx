@@ -1,32 +1,20 @@
-import React from 'react'
-import Hero from '../Components/Hero'
-import About from '../Components/About'
-import Skill from '../Components/Skill'
-import Project from '../Components/Project'
-import Contact from '../Components/Contact'
-import ScrollReveal from '../Components/ScrollReveal.jsx'
+import React from "react";
+import HeroSection       from "../components/sections/HeroSection";
+import AboutPreview      from "../components/sections/AboutPreview";
+import FeaturedProjects  from "../components/sections/FeaturedProjects";
+import SkillsPreview     from "../components/sections/SkillsPreview";
+import CTASection        from "../components/sections/CTASection";
 
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <ScrollReveal>
-        <Hero />
-      </ScrollReveal>
-      <ScrollReveal>
-        <About />
-      </ScrollReveal>
+    <div>
+      <HeroSection />
+      <AboutPreview />
+      <FeaturedProjects />
+      <SkillsPreview />
+      <CTASection />
+    </div>
+  );
+};
 
-      <ScrollReveal>
-        <Skill />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <Project />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <Contact />
-      </ScrollReveal>
-    </>
-  )
-}
+export default Home;
