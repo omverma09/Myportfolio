@@ -1,17 +1,15 @@
 import React, {
     createContext,
     useContext,
-    useState,
-    useEffect,
     useMemo,
 } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-// ── Context ───────────────────────────────────────
+// Context 
 const ThemeContext = createContext();
 
-// ── MUI Dark Theme ────────────────────────────────
+// MUI Dark Theme
 const buildMuiTheme = () =>
     createTheme({
         palette: {
