@@ -2,6 +2,10 @@
 export const API_BASE_URL =
     process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
+// ── Environment ───────────────────────────────────
+export const IS_DEV  = process.env.REACT_APP_ENV === "development";
+export const IS_PROD = process.env.REACT_APP_ENV === "production";
+
 // Navigation
 export const NAV_LINKS = [
     { id: "01", label: "Home", path: "/" },

@@ -5,13 +5,10 @@ const connectDB = require("./src/config/db");
 const app = require("./src/app");
 const { config } = require("./src/config/env");
 
-// ── Validate env variables before anything else ───
 validateEnv();
 
-// Connect to MongoDB
 connectDB();
 
-// Start HTTP server
 const server = app.listen(config.PORT, () => {
     console.log("─────────────────────────────────────────");
     console.log(`Server running in ${config.NODE_ENV} mode`);
