@@ -244,7 +244,7 @@ const Contact = () => {
                     </div>
                 </motion.div>
 
-                {/* ── Right — Contact form ──────────────── */}
+                {/* Right — Contact form */}
                 <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}

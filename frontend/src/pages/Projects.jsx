@@ -9,7 +9,7 @@ import ErrorMessage from "../components/common/ErrorMessage";
 import { useProjects } from "../hooks/useProjects";
 import { PROJECT_FILTERS } from "../constants";
 
-// ── Demo fallback ─────────────────────────────────
+// Demo fallback
 const DEMO_PROJECTS = [
     { _id: "1", title: "E-Commerce Platform", category: "Full Stack", description: "Full-stack e-commerce app with cart, Stripe payments, and admin dashboard.", techStack: ["MongoDB", "Express", "React", "Node.js", "Stripe"], status: "completed", githubUrl: "#", liveUrl: "#" },
     { _id: "2", title: "Task Manager REST API", category: "Backend", description: "RESTful API with JWT auth, RBAC, file uploads, and Socket.io notifications.", techStack: ["Node.js", "Express", "MongoDB", "JWT", "Socket.io"], status: "completed", githubUrl: "#" },
@@ -26,7 +26,7 @@ const Projects = () => {
 
     const displayProjects = projects.length ? projects : DEMO_PROJECTS;
 
-    // ── Filter + Search ───────────────────────────
+    // Filter + Search
     const filtered = useMemo(() => {
         return displayProjects.filter((p) => {
             const matchFilter =
@@ -48,7 +48,7 @@ const Projects = () => {
     return (
         <div className="page-wrapper">
 
-            {/* ── Heading ───────────────────────────── */}
+            {/* Heading */}
             <SectionHeading
                 number="03"
                 label="My Work"
@@ -56,7 +56,7 @@ const Projects = () => {
                 subtitle="A collection of projects I've built — from full-stack web apps to REST APIs and everything in between."
             />
 
-            {/* ── Search bar ────────────────────────── */}
+            {/* Search bar */}
             <div style={{ marginBottom: "2rem", maxWidth: 440 }}>
                 <TextField
                     fullWidth
@@ -74,7 +74,7 @@ const Projects = () => {
                 />
             </div>
 
-            {/* ── Filter pills ──────────────────────── */}
+            {/* Filter pills */}
             <div
                 style={{
                     display: "flex",
@@ -110,7 +110,7 @@ const Projects = () => {
                 ))}
             </div>
 
-            {/* ── Content ───────────────────────────── */}
+            {/* Content */}
             {loading && <Loader fullScreen text="Loading projects..." />}
 
             {!loading && error && (

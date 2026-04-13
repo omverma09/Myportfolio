@@ -32,7 +32,7 @@ const DEMO_SKILLS = [
     { _id: "12", name: "Socket.io", proficiency: 78, icon: "🔄", category: "Backend" },
 ];
 
-// ── Stat card ─────────────────────────────────────
+// Stat card
 const StatCard = ({ value, label, index }) => {
     const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
     return (
@@ -62,7 +62,7 @@ const StatCard = ({ value, label, index }) => {
     );
 };
 
-// ── Timeline item ─────────────────────────────────
+// Timeline item
 const TimelineItem = ({ item, index }) => {
     const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
     return (
@@ -187,7 +187,7 @@ const TimelineItem = ({ item, index }) => {
     );
 };
 
-// ── About page ────────────────────────────────────
+// About page
 const About = () => {
     const { skills, loading } = useSkills();
     const displaySkills = skills.length ? skills : DEMO_SKILLS;
@@ -195,7 +195,7 @@ const About = () => {
     return (
         <div className="page-wrapper">
 
-            {/* ── Hero heading ──────────────────────── */}
+            {/* Hero heading */}
             <SectionHeading
                 number="02"
                 label="About Me"
@@ -203,7 +203,7 @@ const About = () => {
                 subtitle={PERSONAL_INFO.about}
             />
 
-            {/* ── Stats row ─────────────────────────── */}
+            {/* Stats row */}
             <section style={{ marginBottom: "6rem" }}>
                 <div
                     style={{
@@ -225,7 +225,7 @@ const About = () => {
 
             <Divider sx={{ mb: "5rem" }} />
 
-            {/* ── About detail ──────────────────────── */}
+            {/* About detail */}
             <section
                 style={{
                     display: "grid",
@@ -310,17 +310,13 @@ const About = () => {
                             overflow: "hidden",
                         }}
                     >
-                        
-             
-              <img src={profileImg} alt="Profile"
-                style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-           
-                        {/* <div style={{ textAlign: "center", color: "#334155" }}>
-                            <div style={{ fontSize: "5rem" }}>👨‍💻</div>
-                            <p style={{ fontFamily: "monospace", fontSize: "0.75rem", marginTop: "0.5rem" }}>
-                                Add your photo
-                            </p>
-                        </div> */}
+
+
+                        <img src={profileImg}
+                            alt="Profile"
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+
                     </div>
 
                     {/* Offset border */}
@@ -341,7 +337,7 @@ const About = () => {
 
             <Divider sx={{ mb: "5rem" }} />
 
-            {/* ── Experience timeline ───────────────── */}
+            {/* Experience timeline */}
             <section style={{ marginBottom: "6rem" }}>
                 <p className="section-label">Experience</p>
                 <h3
@@ -365,7 +361,7 @@ const About = () => {
 
             <Divider sx={{ mb: "5rem" }} />
 
-            {/* ── Skills grid ───────────────────────── */}
+            {/* Skills grid */}
             <section>
                 <p className="section-label">Skills</p>
                 <h3

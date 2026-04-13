@@ -13,9 +13,7 @@ const sendMessage = async (req, res, next) => {
 
         try {
             await Promise.all([
-                // Notify admin
                 sendContactNotification({ name, email, subject, message }),
-                // Auto-reply to sender
                 sendContactAutoReply({ name, email }),
             ]);
             emailSent = true;

@@ -37,7 +37,7 @@ const ProjectDetail = () => {
     return (
         <div className="page-wrapper">
 
-            {/* ── Back button ───────────────────────── */}
+            {/* Back button */}
             <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -63,7 +63,7 @@ const ProjectDetail = () => {
                 Back to Projects
             </motion.button>
 
-            {/* ── Hero image ────────────────────────── */}
+            {/* Hero image */}
             {imageUrl && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ const ProjectDetail = () => {
                 </motion.div>
             )}
 
-            {/* ── Header row ────────────────────────── */}
+            {/* Header row */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ const ProjectDetail = () => {
 
             <Divider sx={{ mb: "2.5rem" }} />
 
-            {/* ── Main content grid ─────────────────── */}
+            {/* Main content grid */}
             <div
                 style={{
                     display: "grid",
@@ -359,7 +359,7 @@ const ProjectDetail = () => {
                 </motion.div>
             </div>
 
-            {/* ── Back link ─────────────────────────── */}
+            {/* Back lin */}
             <div style={{ marginTop: "4rem", textAlign: "center" }}>
                 <Link
                     to="/projects"

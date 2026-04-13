@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-    Tooltip,
-} from "@mui/material";
+import { Tooltip } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,6 +11,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 import { NAV_LINKS, PERSONAL_INFO } from "../../constants";
 import { useScrolledPast } from "../../hooks/useScrollPosition";
+import myResume from "../../assets/Myresume3.pdf"
 
 const Navbar = () => {
     const location = useLocation();
@@ -41,7 +40,7 @@ const Navbar = () => {
 
     return (
         <>
-            {/* ── Main Nav Bar ─────────────────────────── */}
+            {/* Main Nav Bar */}
             <motion.header
                 initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -67,7 +66,7 @@ const Navbar = () => {
                     transition: "all 0.4s ease",
                 }}
             >
-                {/* ── Logo ───────────────────────────────── */}
+                {/* Logo */}
                 <Link
                     to="/"
                     style={{
@@ -105,7 +104,7 @@ const Navbar = () => {
                     </span>
                 </Link>
 
-                {/* ── Desktop Navigation ───────────────────────── */}
+                {/* Desktop Navigation */}
                 <nav
                     style={{
                         display: "flex",
@@ -160,9 +159,10 @@ const Navbar = () => {
                     {/* Resume Button (Desktop + Mobile) */}
                     <Tooltip title="Download Resume" placement="bottom">
                         <motion.a
-                            href={PERSONAL_INFO.resumeUrl}
+                            href={myResume}
                             target="_blank"
                             rel="noreferrer"
+                            download
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.97 }}
                             style={{
@@ -192,7 +192,7 @@ const Navbar = () => {
                 </nav>
             </motion.header>
 
-            {/* ── Mobile Bottom Navigation ───────────────────────── */}
+            {/* Mobile Bottom Navigation */}
             <div className="mobile-nav">
                 {NAV_LINKS.map((link) => (
                     <Link
@@ -208,7 +208,7 @@ const Navbar = () => {
                 ))}
             </div>
 
-            {/* ── Responsive Styles ───────────────────────── */}
+            {/* ── Responsive Styles  */}
             <style jsx>{`
                 /* Hide desktop nav on mobile */
                 @media (max-width: 900px) {

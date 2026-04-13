@@ -2,15 +2,15 @@ const nodemailer = require("nodemailer");
 const { config } = require("../config/env");
 
 const createTransporter = () => {
-    return nodemailer.createTransport({
-        host: config.SMTP_HOST,
-        port: config.SMTP_PORT,
-        secure: config.SMTP_PORT === 465,
-        auth: {
-            user: config.SMTP_USER,
-            pass: config.SMTP_PASS,
-        },
-    });
+  return nodemailer.createTransport({
+    host: config.SMTP_HOST,
+    port: config.SMTP_PORT,
+    secure: config.SMTP_PORT === 465,
+    auth: {
+      user: config.SMTP_USER,
+      pass: config.SMTP_PASS,
+    },
+  });
 };
 
 /**
@@ -21,29 +21,29 @@ const createTransporter = () => {
  * @param {string} options.text   - plain text fallback
  */
 const sendEmail = async (options) => {
-    const transporter = createTransporter();
+  const transporter = createTransporter();
 
-    const mailOptions = {
-        from: `"${config.EMAIL_FROM_NAME}" <${config.EMAIL_FROM}>`,
-        to: options.to,
-        subject: options.subject,
-        html: options.html,
-        text: options.text || "",
-    };
+  const mailOptions = {
+    from: `"${config.EMAIL_FROM_NAME}" <${config.EMAIL_FROM}>`,
+    to: options.to,
+    subject: options.subject,
+    html: options.html,
+    text: options.text || "",
+  };
 
-    const info = await transporter.sendMail(mailOptions);
+  const info = await transporter.sendMail(mailOptions);
 
-    if (config.isDev) {
-        console.log(`📧  Email sent: ${info.messageId}`);
-    }
+  if (config.isDev) {
+    console.log(`📧  Email sent: ${info.messageId}`);
+  }
 
-    return info;
+  return info;
 };
 
 // Contact form notification email
 // Sent to admin when someone fills the contact form
 const sendContactNotification = async ({ name, email, subject, message }) => {
-    const html = `
+  const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -91,17 +91,17 @@ const sendContactNotification = async ({ name, email, subject, message }) => {
     </html>
   `;
 
-    return sendEmail({
-        to: config.EMAIL_FROM,
-        subject: `Portfolio Contact: ${subject}`,
-        html,
-        text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
-    });
+  return sendEmail({
+    to: config.EMAIL_FROM,
+    subject: `Portfolio Contact: ${subject}`,
+    html,
+    text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
+  });
 };
 
 // Auto-reply to sender
 const sendContactAutoReply = async ({ name, email }) => {
-    const html = `
+  const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -142,16 +142,16 @@ const sendContactAutoReply = async ({ name, email }) => {
     </html>
   `;
 
-    return sendEmail({
-        to: email,
-        subject: "Thanks for your message!",
-        html,
-        text: `Hi ${name},\n\nThank you for your message! I'll get back to you within 24 hours.\n\nBest regards,\n${config.EMAIL_FROM_NAME}`,
-    });
+  return sendEmail({
+    to: email,
+    subject: "Thanks for your message!",
+    html,
+    text: `Hi ${name},\n\nThank you for your message! I'll get back to you within 24 hours.\n\nBest regards,\n${config.EMAIL_FROM_NAME}`,
+  });
 };
 
 module.exports = {
-    sendEmail,
-    sendContactNotification,
-    sendContactAutoReply,
+  sendEmail,
+  sendContactNotification,
+  sendContactAutoReply,
 };
