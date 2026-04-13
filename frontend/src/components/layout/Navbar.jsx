@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-    Drawer,
-    IconButton,
-    List,
-    ListItem,
     Tooltip,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import CodeIcon from "@mui/icons-material/Code";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import HomeIcon from "@mui/icons-material/Home";
+import PersonIcon from "@mui/icons-material/Person";
+import WorkIcon from "@mui/icons-material/Work";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+
 import { NAV_LINKS, PERSONAL_INFO } from "../../constants";
 import { useScrolledPast } from "../../hooks/useScrollPosition";
 
 const Navbar = () => {
-    const [drawerOpen, setDrawerOpen] = useState(false);
     const location = useLocation();
     const isScrolled = useScrolledPast(60);
-
-    // Close drawer on route change
-    useEffect(() => {
-        setDrawerOpen(false);
-    }, [location.pathname]);
 
     const isActive = (path) =>
         path === "/"
             ? location.pathname === "/"
             : location.pathname.startsWith(path);
+
+    // Icon mapping for mobile nav
+    const getIcon = (label) => {
+        switch (label.toLowerCase()) {
+            case "home":
+                return <HomeIcon sx={{ fontSize: 22 }} />;
+            case "about":
+                return <PersonIcon sx={{ fontSize: 22 }} />;
+            case "projects":
+                return <WorkIcon sx={{ fontSize: 22 }} />;
+            case "contact":
+                return <ContactMailIcon sx={{ fontSize: 22 }} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <>
@@ -43,13 +52,13 @@ const Navbar = () => {
                     left: 0,
                     right: 0,
                     zIndex: 1000,
-                    padding: "0 2rem",
+                    padding: "0 1.5rem",
                     height: 70,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
                     background: isScrolled
-                        ? "rgba(2, 6, 23, 0.92)"
+                        ? "rgba(2, 6, 23, 0.95)"
                         : "transparent",
                     backdropFilter: isScrolled ? "blur(14px)" : "none",
                     borderBottom: isScrolled
@@ -127,13 +136,11 @@ const Navbar = () => {
                                     alignItems: "center",
                                     gap: "0.3rem",
                                 }}
-                                onMouseEnter={(e) =>
-                                    (e.currentTarget.style.color = "#64ffda")
-                                }
+                                onMouseEnter={(e) => (e.currentTarget.style.color = "#64ffda")}
                                 onMouseLeave={(e) =>
-                                (e.currentTarget.style.color = isActive(link.path)
-                                    ? "#64ffda"
-                                    : "#94a3b8")
+                                    (e.currentTarget.style.color = isActive(link.path)
+                                        ? "#64ffda"
+                                        : "#94a3b8")
                                 }
                             >
                                 <span
@@ -150,7 +157,7 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* Resume Button (Desktop) */}
+                    {/* Resume Button (Desktop + Mobile) */}
                     <Tooltip title="Download Resume" placement="bottom">
                         <motion.a
                             href={PERSONAL_INFO.resumeUrl}
@@ -182,137 +189,87 @@ const Navbar = () => {
                             Resume
                         </motion.a>
                     </Tooltip>
-
-                    {/* Mobile Hamburger Menu */}
-                    <IconButton
-                        onClick={() => setDrawerOpen(true)}
-                        sx={{
-                            color: "#64ffda",
-                            display: { xs: "flex", md: "none" },
-                            p: 0.5,
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                 </nav>
             </motion.header>
 
-            {/* ── Mobile Drawer ────────────────────────── */}
-            <Drawer
-                anchor="right"
-                open={drawerOpen}
-                onClose={() => setDrawerOpen(false)}
-                PaperProps={{
-                    sx: {
-                        width: "70vw",
-                        maxWidth: 300,
-                        background: "#0f172a",
-                        borderLeft: "1px solid rgba(100,255,218,0.1)",
-                        p: "2rem 1.5rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                    },
-                }}
-            >
-                {/* Drawer Header */}
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <IconButton
-                        onClick={() => setDrawerOpen(false)}
-                        sx={{ color: "#64ffda" }}
+            {/* ── Mobile Bottom Navigation ───────────────────────── */}
+            <div className="mobile-nav">
+                {NAV_LINKS.map((link) => (
+                    <Link
+                        key={link.id}
+                        to={link.path}
+                        className={`mobile-nav-item ${isActive(link.path) ? "active" : ""}`}
                     >
-                        <CloseIcon />
-                    </IconButton>
-                </div>
+                        <div className="mobile-nav-icon">
+                            {getIcon(link.label)}
+                        </div>
+                        <span className="mobile-nav-label">{link.label}</span>
+                    </Link>
+                ))}
+            </div>
 
-                {/* Drawer Navigation Links */}
-                <List disablePadding>
-                    <AnimatePresence>
-                        {NAV_LINKS.map((link, i) => (
-                            <motion.div
-                                key={link.id}
-                                initial={{ opacity: 0, x: 30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.08 }}
-                            >
-                                <ListItem disablePadding sx={{ mb: 2 }}>
-                                    <Link
-                                        to={link.path}
-                                        style={{
-                                            textDecoration: "none",
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            alignItems: "flex-start",
-                                        }}
-                                        onClick={() => setDrawerOpen(false)}
-                                    >
-                                        <span
-                                            style={{
-                                                color: "#64ffda",
-                                                fontFamily: "monospace",
-                                                fontSize: "0.7rem",
-                                                opacity: 0.7,
-                                            }}
-                                        >
-                                            {link.id}.
-                                        </span>
-                                        <span
-                                            style={{
-                                                color: isActive(link.path)
-                                                    ? "#64ffda"
-                                                    : "#ccd6f6",
-                                                fontSize: "1.2rem",
-                                                fontWeight: 600,
-                                            }}
-                                        >
-                                            {link.label}
-                                        </span>
-                                    </Link>
-                                </ListItem>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </List>
-
-                {/* Resume Button in Drawer */}
-                <motion.a
-                    href={PERSONAL_INFO.resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    style={{
-                        marginTop: "auto",
-                        padding: "0.75rem 1.25rem",
-                        borderRadius: "0.5rem",
-                        border: "1px solid rgba(100,255,218,0.4)",
-                        color: "#64ffda",
-                        textDecoration: "none",
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.9rem",
-                        textAlign: "center",
-                        transition: "all 0.3s",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "0.5rem",
-                    }}
-                    onMouseEnter={(e) =>
-                        (e.currentTarget.style.background = "rgba(100,255,218,0.08)")
-                    }
-                    onMouseLeave={(e) =>
-                        (e.currentTarget.style.background = "transparent")
-                    }
-                >
-                    <FileDownloadIcon style={{ fontSize: 18 }} />
-                    Download Resume
-                </motion.a>
-            </Drawer>
-
-            {/* Desktop Nav Media Query */}
+            {/* ── Responsive Styles ───────────────────────── */}
             <style jsx>{`
+                /* Hide desktop nav on mobile */
                 @media (max-width: 900px) {
                     .desktop-nav {
+                        display: none !important;
+                    }
+
+                    /* Mobile Bottom Navigation */
+                    .mobile-nav {
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        height: 65px;
+                        background: rgba(2, 6, 23, 0.98);
+                        backdrop-filter: blur(12px);
+                        border-top: 1px solid rgba(100, 255, 218, 0.1);
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        z-index: 999;
+                        padding: 0 10px;
+                    }
+
+                    .mobile-nav-item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 4px;
+                        color: #94a3b8;
+                        text-decoration: none;
+                        font-size: 0.75rem;
+                        font-family: 'JetBrains Mono', monospace;
+                        transition: all 0.3s ease;
+                        flex: 1;
+                        padding: 6px 0;
+                    }
+
+                    .mobile-nav-item .mobile-nav-icon {
+                        transition: all 0.3s ease;
+                    }
+
+                    .mobile-nav-item.active {
+                        color: #64ffda;
+                    }
+
+                    .mobile-nav-item.active .mobile-nav-icon {
+                        transform: scale(1.15);
+                    }
+
+                    .mobile-nav-label {
+                        font-size: 0.68rem;
+                        font-weight: 500;
+                        letter-spacing: 0.5px;
+                    }
+                }
+
+                /* Hide mobile nav on desktop */
+                @media (min-width: 901px) {
+                    .mobile-nav {
                         display: none !important;
                     }
                 }

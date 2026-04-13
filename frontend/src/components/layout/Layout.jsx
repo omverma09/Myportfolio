@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollToTop from "../common/ScrollToTop";
 
-// ── Page transition variants ──────────────────────
+// ── Page transition variants
 const pageVariants = {
     initial: { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -17,7 +17,7 @@ const pageTransition = {
     ease: "easeInOut",
 };
 
-// ── Layout wrapper ────────────────────────────────
+// ── Layout wrapper
 const Layout = ({ children }) => {
     const location = useLocation();
 
