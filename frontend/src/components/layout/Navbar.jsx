@@ -21,7 +21,6 @@ const Navbar = () => {
             ? location.pathname === "/"
             : location.pathname.startsWith(path);
 
-    // Icon mapping for mobile nav
     const getIcon = (label) => {
         switch (label.toLowerCase()) {
             case "home":
@@ -39,7 +38,6 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Main Nav Bar */}
             <motion.header
                 initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
